@@ -4,7 +4,7 @@ import { actions } from "./actions.js"
 import { routers } from "./routers.js"
 import getContext from './context.js'
 
-export const pageScanner = {
+export const pageTest1 = {
 
     register()
     {
@@ -12,6 +12,6 @@ export const pageScanner = {
         // Inject routing path
         router.registerRoutes(getContext(), routers);
 
-        console.log('✅ Install Scanner plugged in successfully.');
+        console.log('✅ Test1 Feature plugged in successfully.');
     }
 }

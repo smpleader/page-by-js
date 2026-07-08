@@ -1,0 +1,1 @@
+export const sitename = (name="Cover") => { return `<h3 class="float-md-start mb-0">${name}</h3>` }

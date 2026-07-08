@@ -8,7 +8,7 @@ export const pageOpen = {
     {
         // Inject routing path
         router.registerRoutes(getContext(), {
-            '/': ViewOpen
+            '/open': ViewOpen
         }); 
 
         console.log('✅ Open Screen  plugged in successfully.')

@@ -1,10 +1,9 @@
-import { router, store } from '../../pbj-fw.js';
-
+import { router, store, createContent } from '#/pbj-fw.js';
 import { actions } from "./actions.js"
 import { routers } from "./routers.js"
 import getContext from './context.js'
 
-export const pageInstall = {
+export const pageHome = {
 
     register()
     {
@@ -12,6 +11,6 @@ export const pageInstall = {
         // Inject routing path
         router.registerRoutes(getContext(), routers);
 
-        console.log('✅ Install Feature plugged in successfully.');
+        console.log('✅ Home plugged in successfully.');
     }
 }

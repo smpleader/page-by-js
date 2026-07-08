@@ -21,6 +21,9 @@
   "directories": {
     "example": "examples"
   },
+  "imports": {
+    "#/*": "./src/js/*"
+  },
   "scripts": {
     "start": "vite",
     "test": "echo \"Error: no test specified\" && exit 1"
