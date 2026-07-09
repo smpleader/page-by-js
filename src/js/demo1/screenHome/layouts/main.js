@@ -2,8 +2,8 @@ import { safehtml as html, store } from '#/pbj-fw.js';
 import { validTemplate, createContent, createClassTest, validComponent } from '#/pbj-fw.js';
 
 export default () => {
-  const {list} = store.getState()
-  console.log(list)
+  //const {list} = store.getState()
+  //console.log(list)
   
 /** 
 

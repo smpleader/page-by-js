@@ -17,8 +17,12 @@ export const ViewHome = {
         createContent(k, v)
     });
 
+    const com1 = createContent({
+      render: () => `A dumb line html without variable`
+    })    
+
     tplCover.add('content', 'home.main')
-    tplCover.add('content', createContent(`A dumb line html without variable`))
+    tplCover.add('content', com1)
     
     return tplCover.renderPage()
   

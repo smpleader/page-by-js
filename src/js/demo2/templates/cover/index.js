@@ -1,5 +1,4 @@
 import { createTemplate, getComponent } from '#/pbj-fw.js'
-import { getComponent as com } from '#/pbj-fw.js'
 import { registerComponents } from "#/demo2/components"
 import './style.scss'
 
