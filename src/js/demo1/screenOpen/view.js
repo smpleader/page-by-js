@@ -1,5 +1,6 @@
 import { router, safehtml as html } from '../../pbj-fw.js';
 
+let count = 0
 // Export a clean, standardized page controller object
 export const ViewOpen = {
   title: 'Dashboard',
@@ -17,15 +18,16 @@ export const ViewOpen = {
     `;
   },
 
-  initEvents() {
+  afterRender() {
     //const {router} = window.PBJ 
+    console.log("s open cout:", count++);
     
     const btnOpen = document.getElementById("btnOpen")
     if(btnOpen)
-    {
-      const openResult = document.getElementById("openResult")
-      const smallLine = document.querySelector("i.small")
+    { 
+    
       btnOpen.addEventListener('click', async () => {
+        console.log("button from screen open");
         router.navigate('/')
       })
         
@@ -33,5 +35,5 @@ export const ViewOpen = {
     }
   },
 
-  runOnce() {}
+  runOnceBefore() {}
 };

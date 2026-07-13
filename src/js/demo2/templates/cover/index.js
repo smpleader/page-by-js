@@ -4,8 +4,7 @@ import './style.scss'
 
 registerComponents()
 
-const render = () => {
-    
+const registerDefaultCom = () => {
     tplCover.add("header", "cover.header", {
         menu: [
             ["Demo1", "#"],
@@ -16,6 +15,11 @@ const render = () => {
         ]
     })
     tplCover.add("footer", "cover.footer", {link: "#", title: "PBJ Team"})
+}
+
+const createPage = () => {
+
+    console.log("this will run verytime view render !")
     
 }
 
@@ -34,7 +38,10 @@ const layout = /*html*/  `
     </footer>
 </div>
 `
-export const tplCover = createTemplate( 'cover',  render, layout )
+export const tplCover = createTemplate( 'cover',  {
+    render: createPage,
+    runOnce: registerDefaultCom
+}, layout )
 
 /*  
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"> 

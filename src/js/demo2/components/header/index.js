@@ -7,7 +7,7 @@ let content = ''
 const processData = (params) => {
         if( typeof params === "object" )
         {
-            content +=  "sitename" in params ? createSitename(params.sitename) : createSitename()
+            content =  "sitename" in params ? createSitename(params.sitename) : createSitename()
             
             if( "menu" in params)
                 content += createMenu(params.menu)
