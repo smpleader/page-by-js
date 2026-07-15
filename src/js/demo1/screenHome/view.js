@@ -1,8 +1,7 @@
 import getContext from './context.js';
 
-import { store, createContent, validComponent, getComponent, router } from '#/pbj-fw.js';
-import { tplCover } from '#/demo2/templates/cover'
-import allLayouts from './layouts'
+import { store, createContent, validComponent, getComponent, router, getTemplate } from '#/pbj-fw.js'; 
+import allLayouts from './layouts' 
 
 let count = 0
 
@@ -11,6 +10,8 @@ export const ViewHome = {
   name: getContext(),
 
   render() {
+
+    let tplCover = getTemplate('cover')
 
     window.title =  'Home page'
     
@@ -24,6 +25,8 @@ export const ViewHome = {
     Object.entries(allLayouts() ).forEach( ( [k, v] ) => {
         createContent(k, v)
     });
+
+    let tplCover = getTemplate('cover') 
 
     tplCover.add('content', 'home.main')
     tplCover.add('content', createContent( `<button id="btnOpen">Open</button>` ))

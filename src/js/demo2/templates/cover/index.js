@@ -1,11 +1,11 @@
-import { createTemplate, getComponent } from '#/pbj-fw.js'
+import { getTemplate, getComponent } from '#/pbj-fw.js'
 import { registerComponents } from "#/demo2/components"
-import './style.scss'
+import  './style.scss'
 
-registerComponents()
 
 const registerDefaultCom = () => {
-    tplCover.add("header", "cover.header", {
+    registerComponents()
+    getTemplate('cover').add("header", "cover.header", {
         menu: [
             ["Demo1", "#"],
             ["Demo2", "#"],
@@ -14,7 +14,7 @@ const registerDefaultCom = () => {
             ["Demo2", "#"]
         ]
     })
-    tplCover.add("footer", "cover.footer", {link: "#", title: "PBJ Team"})
+    getTemplate('cover').add("footer", "cover.footer", {link: "#", title: "PBJ Team"})
 }
 
 const createPage = () => {
@@ -38,6 +38,16 @@ const layout = /*html*/  `
     </footer>
 </div>
 `
+
+export default [
+    {
+        render: createPage,
+        runOnce: registerDefaultCom
+    }, 
+    layout
+]
+
+/*
 export const tplCover = createTemplate( 'cover',  {
     render: createPage,
     runOnce: registerDefaultCom

@@ -1,3 +1,4 @@
+import './footer.css'
 // description:
 
 let link = '#'
@@ -22,10 +23,12 @@ const renderHtml = (...params) =>{
             processData (...params)
         }
 
-        return `<p>Cover template for <a href="${link}" class="text-white">${title}</a>.</p>`
+        return `<p class="red">Cover template for <a href="${link}" class="text-white">${title}</a>.</p>`
     }
 
 export default {
     data: processData,
-    render:  renderHtml
+    render:  renderHtml,
+    afterRender: () => { console.log("after render of component here");
+    }
 }
