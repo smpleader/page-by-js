@@ -1,6 +1,6 @@
 import getContext from './context.js';
 
-import { store, createContent, validComponent, getComponent, router, getTemplate } from '#/pbj-fw.js'; 
+import { store, createContent, validComponent, getComponent, router, getTemplate, setTemplate } from '#/pbj-fw.js'; 
 import allLayouts from './layouts' 
 
 let count = 0
@@ -26,6 +26,7 @@ export const ViewHome = {
         createContent(k, v)
     });
 
+    setTemplate('cover')
     let tplCover = getTemplate('cover') 
 
     tplCover.add('content', 'home.main')

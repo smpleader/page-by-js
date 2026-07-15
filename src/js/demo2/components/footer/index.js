@@ -29,6 +29,7 @@ const renderHtml = (...params) =>{
 export default {
     data: processData,
     render:  renderHtml,
-    afterRender: () => { console.log("after render of component here");
+    afterRender: () => { 
+        console.log("after render of component here");
     }
 }
