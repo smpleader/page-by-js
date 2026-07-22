@@ -26,7 +26,15 @@ const renderHtml = (...params) =>{
         return `<p class="red">Cover template for <a href="${link}" class="text-white">${title}</a>.</p>`
     }
 
+const dataStructure = () => {
+    return {
+        link: 'link',
+        title: ['heading', {min: 20, ma: 25}]
+    }
+}
+
 export default {
+    dataStructure: dataStructure,
     data: processData,
     render:  renderHtml,
     afterRender: () => { 

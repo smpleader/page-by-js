@@ -1,4 +1,4 @@
-import { router, store, safehtml as html } from '../../pbj-fw.js';
+import { router, store, generateComponentData, getComponent } from '#/pbj-fw.js';
 import getContext from './context.js';
 
 // Export a clean, standardized page controller object
@@ -10,13 +10,31 @@ export const ViewTest1 = {
 
   render() {
     const { messages, ready } = store.getState();
+
+    const comFooter = getComponent('cover.footer')
+
+    generateComponentData('cover.footer', (structure)=>{
+
+      console.log("data structure of component cover.footer", structure);
+      if(structure)
+      {
+        console.log("create data for link and title here");
+      }
+
+      return {link: "https://google.com", title: "Yes, it get generated"}
+    })
     
-    return html`
+    return /*html*/`
       <div class="container-fluid">
           <div class="row header">
             <h1> Hello ! </h1>
-            <h2> Let recheck the system before we can use the application.. </h2>
+            <h2> Here we put a demo  </h2>
+            <h3>Demo auto generate "generateComponentData"</h3>
+
+            ${comFooter.render()}
+
             <div id="msgBoard">
+            <h3>Demo message list from "store"</h3>
             `+ messages.join('<br/>') +`
             ${{
               "-1": "<br/>Loading..",
@@ -39,11 +57,7 @@ export const ViewTest1 = {
     }
   },
 
-  runOnce() {
-    
-
-    // get update from OS
-    //    store.dispatch('RECEIVE_MESSAGE', newData.msg )
+  afterRender() {
  
   }
 };
