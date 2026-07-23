@@ -5,6 +5,9 @@ let link = '#'
 let title = "--" 
 
 const processData = (params) => {
+
+    console.log("footer received", params);
+    
     
         if( typeof params === "object" )
         {
@@ -18,10 +21,10 @@ const processData = (params) => {
 
 const renderHtml = (...params) =>{
 
-        if(params.length > 0)
+        /*if(params.length > 0)
         {
             processData (...params)
-        }
+        }*/
 
         return `<p class="red">Cover template for <a href="${link}" class="text-white">${title}</a>.</p>`
     }

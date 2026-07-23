@@ -5,16 +5,8 @@ import  './style.scss'
 
 const registerDefaultCom = () => {
     registerComponents()
-    getTemplate('cover').add("header", "cover.header", {
-        menu: [
-            ["Demo1", "#"],
-            ["Demo2", "#"],
-            ["Demo2", "#"],
-            ["Demo2", "#"],
-            ["Demo2", "#"]
-        ]
-    })
-    getTemplate('cover').add("footer", "cover.footer", {link: "#", title: "PBJ Team"})
+    getTemplate('cover').add("header", "cover.header")
+    getTemplate('cover').add("footer", "cover.footer")
 }
 
 const createPage = () => {

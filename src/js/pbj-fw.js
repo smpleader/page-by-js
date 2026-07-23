@@ -63,11 +63,11 @@ var t = class {
 		});
 	},
 	resolve(e = null) {
-		J() || console.error("PBJ-error: Application doesn't setup");
+		X() || console.error("PBJ-error: Application doesn't setup");
 		let t = window.location.pathname, n = null;
-		if (t in u) if (N(u[t])) n = u[t];
+		if (t in u) if (F(u[t])) n = u[t];
 		else throw Error("Invalid view for ${path}");
-		else n = z(() => "<h1>Page Not Found</h1>");
+		else n = V(() => "<h1>Page Not Found</h1>");
 		if (!n) throw Error("View not found");
 		typeof e == "object" && Object.assign(d, e), Object.assign(d, {
 			current: n,
@@ -154,41 +154,57 @@ var h = class {
 	g.push(i);
 	let o = Object.freeze(a);
 	return _[t] = o, o;
-}, x = [], S = /* @__PURE__ */ new Map(), C = (e) => w(e) ? S.get(e) : !1, w = (e) => typeof e == "string" ? S.has(e) : typeof e == "object" && "_get" in e && typeof e._get == "function" && x.includes(e._get("_uuid")), T = [], E = null, D = null, O = [], k = [], A = () => {
+}, x = [], S = /* @__PURE__ */ new Map(), C = (e) => w(e) ? S.get(e) : !1, w = (e) => typeof e == "string" ? S.has(e) : typeof e == "object" && "_get" in e && typeof e._get == "function" && x.includes(e._get("_uuid")), T = (e, t) => {
+	if (typeof e != "string" || S.has(e)) throw Error(`Model name must be unique and string (${e})`);
+	if (typeof t == "function") t = { prepareData: t };
+	else if (typeof t != "object" || !t.prepareData) throw Error("Model doesn't have function prepareData");
+	return t._name = e, E(e, {
+		_name: "protected",
+		prepareData: "function"
+	}, t);
+}, E = (n, r, i) => {
+	let a = "M" + e();
+	if (x.includes(a)) return E(n, r, i);
+	x.push(a), r._uuid = "protected", i._uuid = a;
+	let o = new t(r, i), s = Object.freeze(o);
+	return S.set(n, s), s;
+}, D = [], O = null, k = null, A = [], j = [], M = () => {
 	let e = p();
 	if (!e) throw Error("View not found");
 	let t = e._get("_uuid");
-	k.includes(t + "before") || (k.push(t + "before"), e.runOnceBefore()), e.beforeRender();
+	j.includes(t + "before") || (j.push(t + "before"), e.runOnceBefore()), e.beforeRender();
 	let n = e.render();
-	j(), typeof n == "string" ? J(n) : E ? J(E.renderPage()) : console.warn("Nothing to show because template not set"), e.afterRender(), k.includes(t + "after") || (k.push(t + "after"), e.runOnceAfter());
-}, j = () => {
-	if (D && (O.forEach((e) => {
-		if (com = i(e)) {
-			let t = com.dataStructure ? com.dataStructure() : {};
-			com.data(D.prepareData(t, e));
+	N(), typeof n == "string" ? X(n) : O ? X(O.renderPage()) : console.warn("Nothing to show because template not set"), e.afterRender(), j.includes(t + "after") || (j.push(t + "after"), e.runOnceAfter());
+}, N = () => {
+	if (k && (A.forEach((e) => {
+		let t = i(e);
+		if (t && "data" in t) {
+			let n = t.dataStructure ? t.dataStructure() : {};
+			t.data(k.prepareData(n, e));
 		}
-	}), E)) for (let [e, t] of Object.entries(E.getPositions())) t.forEach((e) => {
-		if (e = i(comName)) {
-			let t = e.dataStructure ? e.dataStructure() : {};
-			e.data(D.prepareData(comName, t));
+	}), O)) for (let [e, t] of Object.entries(O.getPositions())) t.forEach((e) => {
+		let t = i(e);
+		if (t && "data" in t) {
+			let n = t.dataStructure ? t.dataStructure() : {};
+			t.data(k.prepareData(n, e));
 		}
 	});
-}, M = () => {
+}, P = () => {
 	let e = p();
 	return e ? e._get("context") : "--";
-}, N = (e) => typeof e == "object" && "_get" in e && typeof e._get == "function" && T.includes(e._get("_uuid")), P = (e, ...t) => {
+}, F = (e) => typeof e == "object" && "_get" in e && typeof e._get == "function" && D.includes(e._get("_uuid")), I = (e, ...t) => {
 	let n = i(e);
-	if (n) return O.push(n._get("_name")), t.length && n.data(...t), n;
+	if (n) return A.push(n._get("_name")), t.length && n.data(...t), n;
 	throw Error("Invalid model to use", mdl);
-}, F = () => D, I = (e) => {
+}, L = () => k, R = (e) => {
 	let t = C(e);
-	if (t) return D = t;
+	if (t) return k = t;
 	throw Error("Invalid model to use", e);
-}, L = () => E, R = (e) => {
+}, z = () => O, B = (e) => {
 	let t = v(e);
-	if (t) return E = t;
+	if (t) return O = t;
 	throw Error("Invalid template to use", e);
-}, z = (t) => {
+}, V = (t) => {
 	let n = {};
 	if (typeof t == "function") n.render = t, t = {};
 	else if (typeof t != "object" || !t.render) throw Error("Can't create view because of invalid parameters");
@@ -200,8 +216,8 @@ var h = class {
 	].forEach((e) => {
 		n[e] = t[e] ? t[e] : () => {};
 	}), n.afterRender = () => {
-		E && E.afterRender(), t.afterRender();
-	}, n.mount = A, n.context = t.context ? t.context : "temp" + e(), n.render ||= t.render, B({
+		O && O.afterRender(), "afterRender" in t && t.afterRender();
+	}, n.mount = M, n.context = t.context ? t.context : "temp" + e(), n.render ||= t.render, H({
 		_uuid: "protected",
 		context: "protected",
 		mount: "function",
@@ -212,60 +228,60 @@ var h = class {
 		runOnceAfter: "function",
 		afterRender: "function"
 	}, n);
-}, B = (n, r) => {
+}, H = (n, r) => {
 	let i = "V" + e();
-	if (T.includes(i)) return B(n, r);
-	T.push(i), r._uuid = i;
+	if (D.includes(i)) return H(n, r);
+	D.push(i), r._uuid = i;
 	let a = new t(n, r);
 	return Object.freeze(a);
-}, V = { "--": {} }, H = [], U = {}, W = {
+}, U = { "--": {} }, W = [], G = {}, K = {
 	getState(e = "") {
-		let t = JSON.parse(JSON.stringify(V)), n = e || M();
+		let t = JSON.parse(JSON.stringify(U)), n = e || P();
 		return n in t ? t[n] : {};
 	},
 	subscribe(e) {
-		return H.push(e), () => {
-			H.splice(H.indexOf(e), 1);
+		return W.push(e), () => {
+			W.splice(W.indexOf(e), 1);
 		};
 	},
 	registerActions(e, t) {
-		if (e in U || (U[e] = {}), Object.assign(U[e], t), "DEFAULT_VALUES" in t) {
+		if (e in G || (G[e] = {}), Object.assign(G[e], t), "DEFAULT_VALUES" in t) {
 			let n = t.DEFAULT_VALUES;
-			V[e] = n({}, null);
+			U[e] = n({}, null);
 		}
 	},
 	dispatch(e, t) {
-		let n = M();
-		if (U[n] && U[n][e]) {
-			let r = U[n][e], i = V[n];
-			V[n] = r(i, t), H.forEach((t) => t({ action: e }));
+		let n = P();
+		if (G[n] && G[n][e]) {
+			let r = G[n][e], i = U[n];
+			U[n] = r(i, t), W.forEach((t) => t({ action: e }));
 		}
 	}
 };
 //#endregion
 //#region src/safehtml.js
-function G(e) {
+function q(e) {
 	return typeof e == "string" ? e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;").replace(/\//g, "&#x2F;") : e;
 }
-function K(e, ...t) {
+function J(e, ...t) {
 	return e.reduce((e, n, r) => {
-		let i = t[r] === void 0 ? "" : t[r], a = Array.isArray(i) ? i.join("") : G(String(i));
+		let i = t[r] === void 0 ? "" : t[r], a = Array.isArray(i) ? i.join("") : q(String(i));
 		return e + n + a;
 	}, "");
 }
 //#endregion
 //#region src/index.js
-var q = "", J = (e) => {
-	if (q === "") {
-		if (q = document.getElementById(e), !q) throw Error("Invalid App ID");
-	} else typeof e == "string" && e != "" && (q.innerHTML = e);
-	return q;
-}, Y = (e, t = "app", n = "a[data-link]") => {
-	J(t), window.addEventListener("DOMContentLoaded", () => {
+var Y = "", X = (e) => {
+	if (Y === "") {
+		if (Y = document.getElementById(e), !Y) throw Error("Invalid App ID");
+	} else typeof e == "string" && e != "" && (Y.innerHTML = e);
+	return Y;
+}, Z = (e, t = "app", n = "a[data-link]") => {
+	X(t), window.addEventListener("DOMContentLoaded", () => {
 		document.body.addEventListener("click", (e) => {
 			e.target.matches(n) && (e.preventDefault(), m.navigate(e.target.getAttribute("href")));
-		}), W.subscribe((e) => m.resolve(e)), typeof e == "function" && e(), m.resolve({ action: "DOMContentLoaded" });
+		}), K.subscribe((e) => m.resolve(e)), typeof e == "function" && e(), m.resolve({ action: "DOMContentLoaded" });
 	});
 };
 //#endregion
-export { J as app, Y as bootup, o as createComponent, c as createContent, b as createTemplate, z as createView, F as currentModel, L as currentTemplate, s as generateComponentData, i as getComponent, M as getContext, v as getTemplate, p as getView, m as router, K as safehtml, W as store, P as useComponent, I as useModel, R as useTemplate, a as validComponent, y as validTemplate, N as validView };
+export { X as app, Z as bootup, o as createComponent, c as createContent, T as createModel, b as createTemplate, V as createView, L as currentModel, z as currentTemplate, s as generateComponentData, i as getComponent, P as getContext, v as getTemplate, p as getView, m as router, J as safehtml, K as store, I as useComponent, R as useModel, B as useTemplate, a as validComponent, y as validTemplate, F as validView };

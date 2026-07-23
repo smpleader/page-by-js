@@ -1,40 +1,24 @@
-import { router, store, safehtml as html } from '../../pbj-fw.js';
+import { useComponent, useModel, createContent, createView, useTemplate } from '#/pbj-fw'
 
-import getContext from './context.js'
+import getContext from './context'
+import {registerModel} from './model'
 
 // Export a clean, standardized page controller object
-export const ViewTest = {
+export const ViewTest = createView({
 
-  name:  getContext(),
-  
-  title: 'Test page',
-  
+  context:  getContext(), 
+
+  runOnceBefore() {
+    registerModel()
+  },
+
+  beforeRender(){
+    useModel("modelTest")
+    useTemplate('cover') 
+    useComponent('cover.footer')
+  },
+
   render() {
-
-    const { messages } = store.getState();
-    
-    return /*html*/`
-      <div class="d-flex h-100  w-100 text-center"> 
-        <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-            <button class="btn btn-primary btn-lg" id="btnTest">Open Test1</button>
-            <div class="mt-5">
-                <div class="alert alert-info" role="alert"> ${messages.join('<br/>')} </div>
-            </div>
-        </div>
-    </div>
-    `;
-  },
-
-  initEvents() {
-
-    const btnTest = document.getElementById("btnTest")
-    if(btnTest)
-    {
-        btnTest.addEventListener('click', ()=>{
-            router.navigate('/Test1')
-        })
-    }
-  },
-
-  runOnce() {}
-};
+    document.title = "Page Test 2"
+  }
+})

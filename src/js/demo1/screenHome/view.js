@@ -21,8 +21,6 @@ export const ViewHome = createView({
     Object.entries(allLayouts() ).forEach( ( [k, v] ) => {
         createContent(k, v)
     });
-
-    
     
     let tplCover = getTemplate('cover') 
 
