@@ -29,7 +29,7 @@ const renderHtml = (...params) =>{
 const dataStructure = () => {
     return {
         link: 'link',
-        title: ['heading', {min: 20, ma: 25}]
+        title: ['heading', {min: 20, max: 25}]
     }
 }
 

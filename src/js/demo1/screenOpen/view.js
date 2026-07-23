@@ -1,14 +1,15 @@
-import { router,  createContent, getTemplate } from '#/pbj-fw.js'
+import { router,  createContent, getTemplate, createView, useTemplate } from '#/pbj-fw.js'
 
 let count = 0
-let tplPlain = getTemplate('plain')
+
 // Export a clean, standardized page controller object
-export const ViewOpen = {
-  title: 'Dashboard',
+export const ViewOpen = createView({
+  context: 'Dashboard',
+  runOnceBefore()
+  {
+    const tpl = useTemplate('plain')
 
-  runOnceBefore(){
-
-    getTemplate('plain').add('layout',
+    tpl.add('layout',
       createContent(/*html*/ `
       <div class="d-flex h-100  w-100 text-center"> 
         <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
@@ -19,25 +20,27 @@ export const ViewOpen = {
     `)
     )
   },
-  
-  render() {
-    return getTemplate('plain').renderPage()
-  },
+  render(){
+    useTemplate('plain') 
+    // do sth
+    document.title = "Screen Open"
+    console.log("Screen Open render") 
+  }, 
 
   afterRender() {
     //const {router} = window.PBJ 
-    console.log("s open cout:", count++);
+    console.log("Screen Open after render:", count++);
     
     const btnOpen = document.getElementById("btnOpen")
     if(btnOpen)
     { 
     
       btnOpen.addEventListener('click', async () => {
-        console.log("button from screen open");
+        console.log("Click From Screen open   move to Home");
         router.navigate('/')
       })
          
     }
   },
 
-};
+})

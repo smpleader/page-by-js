@@ -1,12 +1,15 @@
-import { router, store, generateComponentData, getComponent } from '#/pbj-fw.js';
+import { router, store, generateComponentData, getComponent, createView } from '#/pbj-fw.js';
 import getContext from './context.js';
 
 // Export a clean, standardized page controller object
-export const ViewTest1 = {
+export const ViewTest1 = createView({ 
 
-  title: 'Test1 Page',
+  context: getContext(),
 
-  name: getContext(),
+  beforeRender(){
+    // use model and feed data here
+    // getComponent(name).data(model.fill)
+  },
 
   render() {
     const { messages, ready } = store.getState();
@@ -47,7 +50,7 @@ export const ViewTest1 = {
     `;
   },
 
-  initEvents() {
+  afterRender() {
 
     const { ready } = store.getState();
 
@@ -56,8 +59,5 @@ export const ViewTest1 = {
       setTimeout(()=>{ router.navigate('/') }, 500)
     }
   },
-
-  afterRender() {
  
-  }
-};
+})

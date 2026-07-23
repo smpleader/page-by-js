@@ -9,7 +9,7 @@ const registerDefaultCom = () => {
 
 const createPage = () => {
 
-    console.log("this will run verytime view render !")
+    console.log("Template Plain:  function run verytime view render !")
     
 }
 
@@ -24,10 +24,5 @@ export default [
         render: createPage,
         runOnce: registerDefaultCom
     }, 
-    layout,
-    `
-    <div class=""> 
-        {layout}
-    </div>
-    `
+    layout
 ]

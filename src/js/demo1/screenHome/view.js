@@ -1,22 +1,18 @@
 import getContext from './context.js';
 
-import { store, createContent, validComponent, getComponent, router, getTemplate, setTemplate } from '#/pbj-fw.js'; 
+import { store, createContent, validComponent, getComponent, router, getTemplate, useTemplate, createView } from '#/pbj-fw.js'; 
 import allLayouts from './layouts' 
+import context from './context.js';
 
-let count = 0
+let count = 0 
 
-export const ViewHome = {
+export const ViewHome = createView({
 
-  name: getContext(),
+  context: getContext(),
 
   render() {
-
-    let tplCover = getTemplate('cover')
-
-    window.title =  'Home page'
-    
-    return tplCover.renderPage()
-  
+    useTemplate('cover') 
+    document.title =  'Home page'  
   },
 
   runOnceBefore()
@@ -26,7 +22,8 @@ export const ViewHome = {
         createContent(k, v)
     });
 
-    setTemplate('cover')
+    
+    
     let tplCover = getTemplate('cover') 
 
     tplCover.add('content', 'home.main')
@@ -36,12 +33,13 @@ export const ViewHome = {
 
   afterRender()
   {
-    console.log("screenhome cout:", count++);
+    console.log("Screen Home after render:", count++);
     
     const btn = document.getElementById("btnOpen") 
     btn.addEventListener("click", ()=>{
+      console.log("Click from Screen Home to screen Open");
       router.navigate("/open")
     })
   }
 
-};
+})
