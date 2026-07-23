@@ -1,6 +1,6 @@
 import getContext from './context.js';
 
-import { store, createContent, validComponent, getComponent, router, getTemplate, useTemplate, createView } from '#/pbj-fw.js'; 
+import { store, createContent, validComponent, getComponent, router, getTemplate, useTemplate, createView, useComponent, useModel } from '#/pbj-fw.js'; 
 import allLayouts from './layouts' 
 import context from './context.js';
 
@@ -10,7 +10,8 @@ export const ViewHome = createView({
 
   context: getContext(),
 
-  render() {
+  render() { 
+    getComponent('cover.footer').data('name_here', {link: '###', title: "ohhhh"})
     useTemplate('cover') 
     document.title =  'Home page'  
   },

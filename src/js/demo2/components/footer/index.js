@@ -4,9 +4,9 @@ import './footer.css'
 let link = '#'
 let title = "--" 
 
-const processData = (params) => {
+const processData = (name, ...params) => {
 
-    console.log("footer received", params);
+    console.log("footer received", name, params);
     
     
         if( typeof params === "object" )
@@ -20,6 +20,9 @@ const processData = (params) => {
     }
 
 const renderHtml = (...params) =>{
+
+    console.log(params);
+    
 
         /*if(params.length > 0)
         {
