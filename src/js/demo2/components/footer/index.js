@@ -4,7 +4,7 @@ import './footer.css'
 let link = '#'
 let title = "--" 
 
-const processData = (name, ...params) => {
+const processData = (...params) => {
 
     console.log("footer received", name, params);
     

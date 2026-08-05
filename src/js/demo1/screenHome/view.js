@@ -11,7 +11,7 @@ export const ViewHome = createView({
   context: getContext(),
 
   render() { 
-    getComponent('cover.footer').data('name_here', {link: '###', title: "ohhhh"})
+    getComponent('cover.footer').data({link: '###', title: "ohhhh"})
     useTemplate('cover') 
     document.title =  'Home page'  
   },
@@ -27,6 +27,8 @@ export const ViewHome = createView({
 
     tplCover.add('content', 'home.main')
     tplCover.add('content', createContent( `<button id="btnOpen">Open</button>` ))
+    tplCover.add('content', 'cover.head.1', {title: "the first"})
+    tplCover.add('content', 'cover.head.2', {title: "the second"})
 
   },
 
