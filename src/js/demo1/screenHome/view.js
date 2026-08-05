@@ -27,6 +27,7 @@ export const ViewHome = createView({
 
     tplCover.add('content', 'home.main')
     tplCover.add('content', createContent( `<button id="btnOpen">Open</button>` ))
+    tplCover.add('content', createContent( `<button id="btnSEFTest">SEF test</button>` ))
     tplCover.add('content', 'cover.head.1', {title: "the first"})
     tplCover.add('content', 'cover.head.2', {title: "the second"})
 
@@ -40,6 +41,12 @@ export const ViewHome = createView({
     btn.addEventListener("click", ()=>{
       console.log("Click from Screen Home to screen Open");
       router.navigate("/open")
+    })
+
+    const btn2 = document.getElementById("btnSEFTest") 
+    btn2.addEventListener("click", ()=>{
+      console.log("Click from Screen Home to screen SEF Test");
+      router.navigate("/open/122")
     })
   }
 

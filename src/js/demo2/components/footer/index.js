@@ -4,9 +4,9 @@ import './footer.css'
 let link = '#'
 let title = "--" 
 
-const processData = (...params) => {
+const processData = (params) => {
 
-    console.log("footer received", name, params);
+    console.log("footer received",  params);
     
     
         if( typeof params === "object" )

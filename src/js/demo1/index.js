@@ -2,6 +2,7 @@ import { pageOpen } from './screenOpen'
 import { pageHome } from './screenHome'
 import { pageTest1 } from './screenTest1'
 import { pageTest2 } from './screenTest2'
+import { pageSEFTest } from './screenSEFTest'
 
 /**
  * This plugins for features
@@ -14,4 +15,5 @@ export default () =>
   pageOpen.register()
   pageTest1.register()
   pageTest2.register()
+  pageSEFTest.register()
 }
