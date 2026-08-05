@@ -19,7 +19,7 @@ export const ViewSEFTest = createView({
     getComponent('cover.footer').data({title: "Oh new", link: "#"})
 
     // get id from slug
-    const {data} = router.getRouteState()
+    const {data} = router.getParams()
 
     tpl.add('content', createContent("We are having ID "+ data.id))
     
