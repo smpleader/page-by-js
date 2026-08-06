@@ -11,7 +11,7 @@ const registerDefaultCom = () => {
 
 const createPage = () => {
 
-    console.log("Template Cover  run verytime view render !")
+    //console.log("Template Cover  run verytime view render !")
     
 }
 

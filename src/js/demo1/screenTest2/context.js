@@ -1,1 +1,1 @@
-export default () => 'PageTest'
+export default () => 'PageTest2'

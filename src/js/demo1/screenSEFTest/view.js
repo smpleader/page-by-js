@@ -22,10 +22,20 @@ export const ViewSEFTest = createView({
     const {data} = router.getParams()
 
     tpl.add('content', createContent("We are having ID "+ data.id))
+    tpl.add('content', createContent("<button id='btnOpen'>Go to Open page</button>"))
     
   },
 
   render() {
     document.title = "Page Test 2"
+  },
+
+  afterRender()
+  {
+    const btn = document.getElementById("btnOpen") 
+    btn.addEventListener("click", ()=>{
+      console.log("Click from Open Detail to screen Open");
+      router.navigate("/open")
+    })
   }
 })

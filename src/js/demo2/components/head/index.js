@@ -35,6 +35,6 @@ export default {
     data: processData,
     render:  renderHtml,
     afterRender: () => { 
-        console.log("after render of component head");
+        //console.log("after render of component head");
     }
 }

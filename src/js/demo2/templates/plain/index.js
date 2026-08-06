@@ -9,7 +9,7 @@ const registerDefaultCom = () => {
 
 const createPage = () => {
 
-    console.log("Template Plain:  function run verytime view render !")
+    //console.log("Template Plain:  function run verytime view render !")
     
 }
 

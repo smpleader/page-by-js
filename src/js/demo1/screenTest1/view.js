@@ -5,10 +5,10 @@ import getContext from './context.js';
 export const ViewTest1 = createView({ 
 
   context: getContext(),
-
-  beforeRender(){
-    // use model and feed data here
-    // getComponent(name).data(model.fill)
+ 
+  beforeRender() {
+    //console.log("test1 to test2");
+    //router.navigate('/test2')
   },
 
   render() {

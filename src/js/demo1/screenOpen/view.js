@@ -1,13 +1,15 @@
 import { router,  createContent, getTemplate, createView, useTemplate } from '#/pbj-fw.js'
+import getContext from './context.js'
 
 let count = 0
 
 // Export a clean, standardized page controller object
 export const ViewOpen = createView({
-  context: 'Dashboard',
+  context: getContext(),
   runOnceBefore()
   {
     const tpl = useTemplate('plain')
+    tpl.resetPosition('layout')
 
     tpl.add('layout',
       createContent(/*html*/ `
@@ -19,6 +21,10 @@ export const ViewOpen = createView({
       </div>
     `)
     )
+  },
+  beforeRender() {
+    //console.log("open to test1");
+    //router.navigate('/test1')
   },
   render(){
     useTemplate('plain') 

@@ -6,7 +6,7 @@ let title = "--"
 
 const processData = (params) => {
 
-    console.log("footer received",  params);
+    //console.log("footer received",  params);
     
     
         if( typeof params === "object" )
@@ -21,7 +21,7 @@ const processData = (params) => {
 
 const renderHtml = (...params) =>{
 
-    console.log(params);
+    //console.log(params);
     
 
         /*if(params.length > 0)
@@ -44,6 +44,6 @@ export default {
     data: processData,
     render:  renderHtml,
     afterRender: () => { 
-        console.log("after render of component here");
+        //console.log("after render of component here");
     }
 }

@@ -4,7 +4,7 @@ export const registerModel = () => createModel('modelTest', (structure, com)=>{
 
     // NOTICE: model should work on structure, not based com name like this
     let result = {}
-    console.log(structure, com);
+    //console.log(structure, com);
     
     switch (com) {
         case 'cover.footer':
